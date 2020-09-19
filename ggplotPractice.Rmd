@@ -1,0 +1,39 @@
+---
+title: "etheopia Plots"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(hrbrthemes)
+library(ggplot2)
+```
+
+
+```{r}
+csv <- read.csv("/Users/User/Desktop/Offline_Challenge_Participation/RawChallengeData/FraymRiskIndicators_Raw&Raster/ethiopia/ethiopia/Ethiopia COVID-19 Risk Scores by Region.csv")
+```
+
+
+```{r}
+csv$bool=1
+head(csv)
+```
+
+```{r}
+ggplot(csv, aes(y=ï..Region, x=Average.Socio.economic.Vulnerability.Score)) +
+  geom_point() +
+  xlim(0, 5) +
+  labs(x = "Socio Economic Vulnerability Score", y = "Region", title = "First Plot")
+```
+
+```{r}
+aggregate(x= csv$Average.Socio.economic.Vulnerability.Score,
+          by= list(csv$ï..Region),
+          FUN=min)
+
+```
+
